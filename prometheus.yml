@@ -1,0 +1,11 @@
+scrape_configs:
+  - job_name: "lb-apigw"
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 1s
+    static_configs:
+      - targets: ["localhost:8080"] # If I were to run prometheus on docker, change localhost to the ip address of your local machine, because localhost inside a Docker container means “the container itself”, not your laptop, and prometheus needs to pull data from your laptop, not the container.
+  - job_name: "e-commerce-service"
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["localhost:9000"]
